@@ -4,7 +4,7 @@ Integrantes:
 [] Daniel Fernando Beltrán
 [] Julio Andrés Mejía
 
-#Funcionalidades
+# Funcionalidades
 [] Crear Libro
 [] Listar libros por autor
 [] Detallar libro
