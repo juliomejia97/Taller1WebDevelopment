@@ -1,5 +1,6 @@
 package com.webDevelopment.solid.useCases;
 
+import com.webDevelopment.solid.models.Author;
 import com.webDevelopment.solid.models.Book;
 import com.webDevelopment.solid.services.Formatter;
 import com.webDevelopment.solid.services.Sender;
@@ -17,7 +18,7 @@ public class BookCardFinder {
     public BookCardFinder(Formatter formatter, Sender sender) {
         this.formatter = formatter;
         this.sender = sender;
-        book = new Book("1984", "George Orwell", 1949, 20d);
+        book = new Book("1984", new Author("George","Orwell"), 1949, 20d);
     }
 
     public String execute() {
