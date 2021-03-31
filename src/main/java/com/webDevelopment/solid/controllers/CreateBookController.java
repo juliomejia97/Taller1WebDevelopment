@@ -25,7 +25,7 @@ public class CreateBookController {
 
 
     @PostMapping(value="/book/create")
-    public String findBookCard(@RequestBody Book book) {
+    public String createBook(@RequestBody Book book) {
         return createBook.execute(book);
     }
 }

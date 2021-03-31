@@ -63,4 +63,22 @@ public class Book {
             throw new Exception("The number of pages must be a positive number and less than 1500 pages.");
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Book){
+            Book book = (Book) obj;
+            return this.title.equalsIgnoreCase(book.title) && this.author.equals(book.author);
+        }
+        return false;
+    }
+
+    public boolean sameAuthor(Author author){
+        return this.author.equals(author);
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
 }

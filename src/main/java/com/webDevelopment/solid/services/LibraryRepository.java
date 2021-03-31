@@ -4,9 +4,11 @@ import com.webDevelopment.solid.models.Author;
 import com.webDevelopment.solid.models.Book;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface LibraryRepository {
-    public void createBook(Book book);
+    public void createBook(Book book) throws Exception;
     public Book getCardBookFinder();
-    public void createAuthor(Author author);
+    public List<Book> listBooksByAuthor(Author author);
 }
