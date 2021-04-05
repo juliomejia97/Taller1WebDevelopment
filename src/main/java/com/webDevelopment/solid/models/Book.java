@@ -79,7 +79,7 @@ public class Book {
     }
 
     public String createBookHeader() {
-        return "ID: " + this.ID + " The book title is: " + this.title + ".";
+        return "ID: " + this.ID + "->The book title is: '" + this.title + "'";
     }
 
     public String createBookDetail() {
@@ -99,12 +99,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return "\tID=" + ID +
-                "\n\ttitle='" + title + '\'' +
-                "\n\tdescription='" + description + '\'' +
-                "\n\tauthor=" + author +
-                "\n\tpublishedYear=" + publishedYear +
-                "\n\tprice=" + price +
-                "\n\tpages=" + pages;
+        return "ID=" + ID +
+                "\ntitle='" + title + '\'' +
+                "\ndescription='" + description + '\'' +
+                "\nauthor=" + author +
+                "\npublishedYear=" + publishedYear +
+                "\nprice=" + price +
+                "\npages=" + pages;
     }
 }

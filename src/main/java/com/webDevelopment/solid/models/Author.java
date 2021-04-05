@@ -36,14 +36,11 @@ public class Author {
     }
 
     public String listAuthorBooks(List<Book> books){
-        StringBuilder message = new StringBuilder();
+        String message = "";
         for (Book book:books) {
-            message.append(book.createBookHeader());
-            message.append(" by ");
-            message.append(this.toString());
-            message.append("\n");
+            message += book.createBookHeader() + " written by " + this.toString() + "\n";
         }
-        return message.toString();
+        return message;
     }
 
     @Override
