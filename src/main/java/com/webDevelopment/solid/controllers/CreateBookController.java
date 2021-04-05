@@ -24,7 +24,7 @@ public class CreateBookController {
     }
 
 
-    @PostMapping(value="/book/create")
+    @PostMapping(value="/book")
     public String createBook(@RequestBody Book book) {
         return createBook.execute(book);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface LibraryRepository {
-    public void createBook(Book book) throws Exception;
-    public Book getCardBookFinder();
-    public List<Book> listBooksByAuthor(Author author);
+    void createBook(Book book) throws Exception;
+    Book findBook(Book book) throws Exception;
+    List<Book> listBooksByAuthor(Author author);
 }

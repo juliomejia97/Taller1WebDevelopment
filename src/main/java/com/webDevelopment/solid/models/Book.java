@@ -29,13 +29,6 @@ public class Book {
         }
     }
 
-    public String createBookCard()
-    {
-        return "The book " + this.title + " has benn written by " + this.author + " and was " +
-                "published in " + this.publishedYear + ". The book's price is " + this.price +
-                ", and the number of pages is " + this.pages + ". A short descrption is "+ this.description;
-    }
-
     private void validateTitle(String title) throws Exception{
         if(title.length() == 0){
             throw new Exception("The Book must have a title.");
@@ -48,7 +41,7 @@ public class Book {
         }
     }
     private void validatePrice(Double price) throws Exception{
-        Double decimals = price - price.intValue();
+        double decimals = price - price.intValue();
         if(price < 10000 || decimals > 0){
             throw new Exception("The price of the book should be an integer greater than 10000.");
         }
@@ -64,6 +57,21 @@ public class Book {
         }
     }
 
+    public boolean sameAuthor(Author author){
+        return this.author.equals(author);
+    }
+
+    public String createBookHeader(){
+        return "The book title is: " + this.title;
+    }
+
+    public String createBookDetail()
+    {
+        return "The book " + this.title + " has benn written by " + this.author + " and was " +
+                "published in " + this.publishedYear + ". The book's price is " + this.price +
+                ", and the number of pages is " + this.pages + ". A short descrption is "+ this.description;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Book){
@@ -71,14 +79,6 @@ public class Book {
             return this.title.equalsIgnoreCase(book.title) && this.author.equals(book.author);
         }
         return false;
-    }
-
-    public boolean sameAuthor(Author author){
-        return this.author.equals(author);
-    }
-
-    public String getTitle(){
-        return title;
     }
 
 }

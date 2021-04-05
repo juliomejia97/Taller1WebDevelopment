@@ -19,6 +19,6 @@ public class ListBooksPerAuthor {
 
     public String execute(Author author){
         List<Book> booksOfAuthor = repository.listBooksByAuthor(author);
-        return (!booksOfAuthor.isEmpty()) ? author.listBooks(booksOfAuthor) : "The author does not have books";
+        return (!booksOfAuthor.isEmpty()) ? author.listAuthorBooks(booksOfAuthor) : "The author does not have books";
     }
 }

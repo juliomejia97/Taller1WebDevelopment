@@ -14,7 +14,7 @@ public class ListBooksPerAuthorController {
     public ListBooksPerAuthorController(ListBooksPerAuthor listBooksPerAuthor){
         this.listBooksPerAuthor = listBooksPerAuthor;
     }
-    @GetMapping(value="/books/list")
+    @GetMapping(value="/book/author")
     public String listBooksOfAuthor(@RequestBody Author author){
         return listBooksPerAuthor.execute(author);
     }

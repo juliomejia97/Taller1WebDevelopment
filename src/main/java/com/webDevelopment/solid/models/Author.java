@@ -35,13 +35,17 @@ public class Author {
         validateAuthorSurName(this.surname);
     }
 
-    public String listBooks(List<Book> books){
-        String message = "";
+    public String listAuthorBooks(List<Book> books){
+        StringBuilder message = new StringBuilder();
         for (Book book:books) {
-            message += book.getTitle()+" "+this.name+" "+this.surname+"\n";
+            message.append(book.createBookHeader());
+            message.append("by");
+            message.append(this.toString());
+            message.append("\n");
         }
-        return message;
+        return message.toString();
     }
+
     @Override
     public String toString() {
         return this.name+" "+this.surname;
