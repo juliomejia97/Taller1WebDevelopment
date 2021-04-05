@@ -3,10 +3,7 @@ package com.webDevelopment.solid.controllers;
 import com.webDevelopment.solid.models.Book;
 import com.webDevelopment.solid.useCases.CreateBook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CreateBookController {
@@ -16,6 +13,11 @@ public class CreateBookController {
     @Autowired
     public CreateBookController(CreateBook createBook) {
         this.createBook = createBook;
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public String error(NullPointerException ex){
+        return ex.getMessage();
     }
 
     @RequestMapping("/healthCheck")
@@ -29,3 +31,4 @@ public class CreateBookController {
         return createBook.execute(book);
     }
 }
+

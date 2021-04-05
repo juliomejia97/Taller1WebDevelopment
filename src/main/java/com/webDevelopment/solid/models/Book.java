@@ -15,7 +15,7 @@ public class Book {
     private Double price;
     private int pages;
 
-    public Book(String title, String description, Author author, Integer publishedYear, Double price, int pages) {
+    public Book(String title, String description, Author author, Integer publishedYear, Double price, int pages) throws Exception {
         try {
             validateTitle(title);
             validateDescription(description);
@@ -31,6 +31,7 @@ public class Book {
             this.pages = pages;
         } catch (Exception e) {
             LOGGER.error("Book-validateBook cause:" + e.getMessage());
+            throw new NullPointerException("The book wasn't created - " + e.getMessage());
         }
     }
 
@@ -56,6 +57,9 @@ public class Book {
     private void validatePublishedYear(Integer publishedYear) throws Exception {
         if (LocalDate.now().getYear() < publishedYear) {
             throw new Exception("The year of publication must be less or equal than the current year.");
+        }
+        if ( publishedYear.toString().length() != 4){
+            throw new Exception("The year of publication must have exactly 4 digits");
         }
     }
 

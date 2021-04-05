@@ -9,7 +9,7 @@ public class Author {
     private String name;
     private String surname;
 
-    public Author(String name, String surname){
+    public Author(String name, String surname) throws Exception {
         try {
             validateAuthorName(name);
             validateAuthorSurName(surname);
@@ -17,6 +17,7 @@ public class Author {
             this.surname = surname;
         } catch (Exception e) {
             LOGGER.error("Author-constructor cause:"+e.getMessage());
+            throw new NullPointerException(e.getMessage());
         }
     }
 
