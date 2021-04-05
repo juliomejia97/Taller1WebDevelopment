@@ -1,8 +1,13 @@
 package com.webDevelopment.solid.models;
+
 import java.time.LocalDate;
 
 import static com.webDevelopment.solid.SolidApplication.LOGGER;
+
 public class Book {
+
+    private static int NEXT_ID = 0;
+    private int ID;
     private String title;
     private String description;
     private Author author;
@@ -16,7 +21,7 @@ public class Book {
             validateDescription(description);
             validatePrice(price);
             author.validateAuthor();
-            validatepublishedYear(publishedYear);
+            validatePublishedYear(publishedYear);
             validatePages(pages);
             this.title = title;
             this.description = description;
@@ -25,60 +30,81 @@ public class Book {
             this.price = price;
             this.pages = pages;
         } catch (Exception e) {
-            LOGGER.error("Book-validateBook cause:"+e.getMessage());
+            LOGGER.error("Book-validateBook cause:" + e.getMessage());
         }
     }
 
-    private void validateTitle(String title) throws Exception{
-        if(title.length() == 0){
+    private void validateTitle(String title) throws Exception {
+        if (title.length() == 0) {
             throw new Exception("The Book must have a title.");
         }
     }
 
-    private void validateDescription(String description) throws Exception{
-        if(description.length() > 200){
+    private void validateDescription(String description) throws Exception {
+        if (description.length() > 200) {
             throw new Exception("The description must have less than 200 characters.");
         }
     }
-    private void validatePrice(Double price) throws Exception{
+
+    private void validatePrice(Double price) throws Exception {
         double decimals = price - price.intValue();
-        if(price < 10000 || decimals > 0){
+        if (price < 10000 || decimals > 0) {
             throw new Exception("The price of the book should be an integer greater than 10000.");
         }
     }
-    private void validatepublishedYear(Integer publishedYear) throws Exception{
-        if(LocalDate.now().getYear() < publishedYear){
+
+    private void validatePublishedYear(Integer publishedYear) throws Exception {
+        if (LocalDate.now().getYear() < publishedYear) {
             throw new Exception("The year of publication must be less or equal than the current year.");
         }
     }
+
     private void validatePages(int pages) throws Exception {
-        if(pages < 0 || pages > 1500){
+        if (pages < 0 || pages > 1500) {
             throw new Exception("The number of pages must be a positive number and less than 1500 pages.");
         }
     }
 
-    public boolean sameAuthor(Author author){
+    public boolean sameId(int id) {
+        return this.ID == id;
+    }
+
+    public boolean sameAuthor(Author author) {
         return this.author.equals(author);
     }
 
-    public String createBookHeader(){
-        return "The book title is: " + this.title;
+    public void assignId() {
+        this.ID = Book.NEXT_ID + 1;
+        Book.NEXT_ID++;
     }
 
-    public String createBookDetail()
-    {
-        return "The book " + this.title + " has benn written by " + this.author + " and was " +
+    public String createBookHeader() {
+        return "ID: " + this.ID + " The book title is: " + this.title + ".";
+    }
+
+    public String createBookDetail() {
+        return "The book '" + this.title + "' has been written by " + this.author + " and was " +
                 "published in " + this.publishedYear + ". The book's price is " + this.price +
-                ", and the number of pages is " + this.pages + ". A short descrption is "+ this.description;
+                ", and the number of pages is " + this.pages + ". A short description is '" + this.description + "'.";
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Book){
+        if (obj instanceof Book) {
             Book book = (Book) obj;
             return this.title.equalsIgnoreCase(book.title) && this.author.equals(book.author);
         }
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "\tID=" + ID +
+                "\n\ttitle='" + title + '\'' +
+                "\n\tdescription='" + description + '\'' +
+                "\n\tauthor=" + author +
+                "\n\tpublishedYear=" + publishedYear +
+                "\n\tprice=" + price +
+                "\n\tpages=" + pages;
+    }
 }

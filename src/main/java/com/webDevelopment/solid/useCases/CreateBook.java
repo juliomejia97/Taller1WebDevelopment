@@ -17,10 +17,10 @@ public class CreateBook {
     }
     public String execute(Book book) {
         try {
-            repository.createBook(book);
-            return "Book has been created";
+            book = repository.createBook(book);
+            return "Book has been created with the following information \n" + book.toString();
         } catch (Exception e) {
-            LOGGER.error("execute-CreateBook cause:"+e.getMessage());
+            LOGGER.error("execute-CreateBook cause: "+e.getMessage());
             return e.getMessage();
         }
     }

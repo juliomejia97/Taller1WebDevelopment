@@ -16,11 +16,13 @@ public class LibraryDataBase implements LibraryRepository {
     }
 
     @Override
-    public void createBook(Book book) throws Exception{
+    public Book createBook(Book book) throws Exception{
         if(books.contains(book)){
             throw new Exception("The book already exists");
         }
+        book.assignId();
         books.add(book);
+        return book;
     }
 
     @Override
@@ -35,14 +37,12 @@ public class LibraryDataBase implements LibraryRepository {
     }
 
     @Override
-    public Book findBook(Book bookIdentifier) throws Exception {
-        Book bookFound = null;
+    public Book findBookById(int id) throws Exception {
         for(Book book: books){
-            bookFound = (book.equals(bookIdentifier))? book:null;
+            if(book.sameId(id)){
+                return book;
+            }
         }
-        if(bookFound == null){
-            throw new Exception("The book does not exist");
-        }
-        return bookFound;
+        throw new Exception("The book does not exist");
     }
 }

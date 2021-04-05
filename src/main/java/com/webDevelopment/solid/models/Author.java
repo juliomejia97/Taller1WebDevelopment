@@ -39,7 +39,7 @@ public class Author {
         StringBuilder message = new StringBuilder();
         for (Book book:books) {
             message.append(book.createBookHeader());
-            message.append("by");
+            message.append(" by ");
             message.append(this.toString());
             message.append("\n");
         }
